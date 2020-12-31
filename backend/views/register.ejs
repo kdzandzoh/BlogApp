@@ -1,0 +1,18 @@
+<h1>Register</h1>
+<form action="/users/register" method="POST">
+
+    <%- include ("./partials/messages") %>
+
+    <label>Name: </label>
+    <input type="text" name="name" value="<%= typeof name != 'undefined' ? name : '' %>"></input>
+    <label>Email: </label>
+    <input type="text" name="email" value="<%= typeof email != 'undefined' ? email : '' %>"></input>
+    <label>Username: </label>
+    <input type="text" name="username" value="<%= typeof username != 'undefined' ? username : '' %>"></input>
+    <label>Password: </label>
+    <input type="password" name="password"></input>
+    <label>Confirm password: </label>
+    <input type="password" name="password2"></input>
+    <button type="submit">Register</button>
+    <p>Have an account? <a href="/users/login">Login</a></p>
+</form>
