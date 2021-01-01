@@ -1,23 +1,20 @@
 const router = require('express').Router()
 const passport = require('passport')
 let User = require('../models/user.model')
-
-router.get('/', (req, res) => {
-    res.send('<h1>Users page</h1>');
-})
+const { ensureNotAuth } = require('../auth2')
 
 //Register page
-router.get('/register', (req, res) => {
+router.get('/register', ensureNotAuth, (req, res) => {
     res.render('register');
 })
 
 //Login page
-router.get('/login', (req, res) => {
+router.get('/login', ensureNotAuth, (req, res) => {
     res.render('login');
 })
 
 //Register user
-router.post('/register', (req, res) => {
+router.post('/register',(req, res) => {
     const { name, email, username, password, password2 } = req.body;
     let errors = [];
     if (!name || !email || !username || !password || !password2) {
@@ -80,9 +77,9 @@ router.post('/register', (req, res) => {
 })
 
 //Login user
-router.post('/login', (req, res, next) => {
+router.post('/login', ensureNotAuth, (req, res, next) => {
     passport.authenticate('local', {
-        successRedirect: '/dashboard',
+        successRedirect: '/profile',
         failureRedirect: '/users/login',
         failureFlash: true
     })(req, res, next);

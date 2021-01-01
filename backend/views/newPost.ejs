@@ -1,0 +1,10 @@
+<h1>Create new post</h1>
+<form action="/posts/add" method="POST">
+
+    <%- include ("./partials/messages") %>
+
+    <label>Text: </label>
+    <textarea type="text" name="body"></textarea>
+    <button type="submit">Create new post</button>
+    
+</form>

@@ -1,0 +1,10 @@
+<h1>All posts</h1>
+<% posts.forEach(function(post) {%>
+        <div class="post">
+            <strong> <%= post.username %> </strong>
+            <p> <%= post.body %> </p>
+            <button > <p> <%= post.likes.length %> ❤️ </p> </button>
+            <p> <%= post.comments.length %> Comments </p>
+            <a href="/posts/<%= post._id%>"> Add comment </a>
+        </div>
+<% }); %>

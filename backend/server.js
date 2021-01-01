@@ -9,6 +9,7 @@ const passport = require('passport')
 const mongoose = require('mongoose')
 const usersRouter = require('./routes/users')
 const indexRouter = require('./routes/index')
+const postRouter = require('./routes/posts')
 
 require('dotenv').config();
 require('./passport')(passport);
@@ -38,6 +39,7 @@ app.use((req, res, next) => {
     res.locals.success_msg = req.flash('success_msg');
     res.locals.failure_msg = req.flash('failure_msg');
     res.locals.error = req.flash('error');
+    res.locals.currentUser = req.user;
     next();
 });
 
@@ -53,5 +55,6 @@ app.set('view engine', 'ejs');
 //Routes
 app.use('/users', usersRouter);
 app.use('/', indexRouter);
+app.use('/posts', postRouter);
 
 app.listen(PORT, console.log(`Server is running on port ${PORT}`));
