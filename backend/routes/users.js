@@ -2,6 +2,8 @@ const router = require('express').Router()
 const passport = require('passport')
 let User = require('../models/user.model')
 const { ensureNotAuth } = require('../auth2')
+const { ensureAuthenticated } = require('../auth')
+
 
 //Register page
 router.get('/register', ensureNotAuth, (req, res) => {
@@ -77,7 +79,7 @@ router.post('/register',(req, res) => {
 })
 
 //Login user
-router.post('/login', ensureNotAuth, (req, res, next) => {
+router.post('/login', (req, res, next) => {
     passport.authenticate('local', {
         successRedirect: '/profile',
         failureRedirect: '/users/login',
@@ -86,7 +88,7 @@ router.post('/login', ensureNotAuth, (req, res, next) => {
 })
 
 //Logout
-router.get('/logout', (req, res) => {
+router.get('/logout', ensureAuthenticated, (req, res) => {
     req.logout();
     req.flash('success_msg', 'Successfully logged out');
     res.redirect('/users/login');

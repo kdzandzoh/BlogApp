@@ -1,13 +1,27 @@
-<h1>Login</h1>
-<form action="/users/login" method="POST">
+<div class="row mt-5">
+    <div class="col-md-6 m-auto">
+        <div class="card card-body text-center">
+            <h1 class="text-center mb-3">Login</h1>
+        
+            <form action="/users/login" method="POST">
+            
+                <%- include ("./partials/messages") %>
+            
+                <div class="form-group">
+                    <label>Username: </label>
+                    <input type="text" name="username" value="<%= typeof username != 'undefined' ? username : '' %>" class="form-control"></input>
+                </div>
 
-    <%- include ("./partials/messages") %>
+                <div class="form-group">
+                    <label>Password: </label>
+                    <input type="password" name="password" class="form-control"></input>
+                </div>
 
-    <label>Username: </label>
-    <input type="text" name="username" value="<%= typeof username != 'undefined' ? username : '' %>"></input>
-    <label>Password: </label>
-    <input type="password" name="password"></input>
-    <button type="submit">Login</button>
-    <p>Don't have an account? <a href="/users/register">Register</a></p>
-    <a href="/posts">Continue as guest</a>
-</form>
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
+                <p class="lead mt-4">Don't have an account? <a href="/users/register">Register</a></p>
+                <a href="/posts" class="btn btn-secondary btn-block">Continue as guest</a>
+            </form>
+
+        </div>
+    </div>
+</div>

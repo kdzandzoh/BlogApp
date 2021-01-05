@@ -6,12 +6,15 @@ const postSchema = new Schema({
     body: String,
     comments: [
         {
-            type: String,
+            body: String,
+            username: String
+        }, {
+            timestamps: true
         }
     ],
     likes: [
         {
-            type: String
+            username: String
         }
     ],
     date: {

@@ -22,6 +22,7 @@ const app = express();
 app.use(cors());
 app.use(flash());
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static(__dirname + '/views'));
 
 //Session
 app.use(session ({
